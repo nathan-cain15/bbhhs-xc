@@ -28,8 +28,7 @@ athletes = []
 times = []
 genders = []
 
-
-
+#find the list of seasons
 for i in range(len(options_list)):
     driver.get("https://oh.milesplit.com/teams/9910-brecksville")
     dropdownEle = driver.find_element(By.ID, "scheduleSeasonYear")
@@ -41,6 +40,7 @@ for i in range(len(options_list)):
     results_list = [i.text for i in results]
     results_items = [i.get_attribute("href") for i in results]
 
+    #loop through the races of that season
     for u in range(len(results_items)):
         driver.get(results_items[u])
         time.sleep(3)
@@ -57,7 +57,8 @@ for i in range(len(options_list)):
             if "9910" in d:
                 driver.get(d)
         time.sleep(3)
-
+        
+        #parse through the data and find the needed data
         data = driver.find_elements(By.CSS_SELECTOR, "tr")
         dataList = [i.text for i in data]
         if 'BOYS ATHLETE PLACE RESULTS' in dataList:
@@ -86,27 +87,5 @@ for i in range(len(options_list)):
 
         time.sleep(5)
 
-
-print(dates)
-print(athletes)
-print(times)
-print(genders)
-
 df = pd.DataFrame({'date': dates, 'athlete': athletes, 'time': times, 'gender': genders})
 df.to_csv('xcData.csv', index=False, encoding='utf-8')
-
-
-
-
-
-
-
-#driver.find_element(By.XPATH, "//select[@id='scheduleSeasonYear']/option").click()
-
-
-
-
-
-
-
-
