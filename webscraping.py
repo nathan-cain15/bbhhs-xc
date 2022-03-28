@@ -7,7 +7,7 @@ PATH = r"C:\Users\natha\milesplitws\chromedriver.exe"
 driver = webdriver.Chrome(PATH)
 driver.get("https://oh.milesplit.com/login?")
 
-#logining in to milesplit
+#logging in to milesplit
 username = driver.find_element(By.ID, "email")
 password = driver.find_element(By.ID, "password")
 
@@ -48,9 +48,6 @@ for i in range(len(options_list)):
 
         driver.find_element(By.LINK_TEXT, "Teams").click()
         time.sleep(2)
-        #location = driver.find_element(By.PARTIAL_LINK_TEXT, "Brecksville")
-        #right = driver.find_element(locate_with(By.PARTIAL_LINK_TEXT, "Results").to_right_of(location))
-        #right.click()
         findBville = driver.find_elements(By.LINK_TEXT, "Results")
         findBvilleText = [i.get_attribute("href") for i in findBville]
         for d in findBvilleText:
